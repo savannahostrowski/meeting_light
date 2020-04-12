@@ -1,5 +1,5 @@
 # Meeting Light PhysiDig Mini Project
-This project was created as part of the experiential research the physidig team conducted as part of as part of our capstone project.
+This project was created as part of the experiential research the physidig team conducted as part of our capstone project.
 
 ## Getting started for /app (the main project)
 ### Required materials
