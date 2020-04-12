@@ -3,8 +3,6 @@ import pyfirmata
 import time
 from get_calendar_events import is_savannah_in_meeting
 
-board=pyfirmata.Arduino('/dev/cu.usbserial-1420')
-
 print("Connected to port")
 
 def update_led():

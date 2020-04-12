@@ -39,7 +39,7 @@ def get_events():
 
     # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    work_calendar = WORK_CAL_ID
+    work_calendar = CAL_ID
     events_result = service.events().list(calendarId=work_calendar, timeMin=now,
                                         maxResults=100, singleEvents=True,
                                         orderBy='startTime').execute()
