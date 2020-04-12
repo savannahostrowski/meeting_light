@@ -5,6 +5,7 @@ import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from calendar_id import WORK_CAL_ID
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
@@ -38,7 +39,7 @@ def get_events():
 
     # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    work_calendar = 'jeiccgk9v71mr3jrs2c6ed758cusdb6f@import.calendar.google.com'
+    work_calendar = WORK_CAL_ID
     events_result = service.events().list(calendarId=work_calendar, timeMin=now,
                                         maxResults=100, singleEvents=True,
                                         orderBy='startTime').execute()

@@ -13,7 +13,7 @@ def update_led():
     green_led = board.digital[12]
     red_led = board.digital[13]
 
-    if savannah_in_meeting:gst
+    if savannah_in_meeting:
         on_led = red_led
         off_led = green_led
     else:
