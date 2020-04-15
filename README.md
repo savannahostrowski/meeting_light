@@ -8,7 +8,8 @@ As a note, the main project is located in the app/ directory. In the prototype_s
 ## Getting started for /app (the main project)
 ### Required materials
 - Arduino Uno
-- 3 Male-to-Male Jumper Wires
+- Solderless breadboard
+- 3 male-to-male jumper wires
 - Two LEDs (one red and one green)
 - Two 220 ohm resistors
 - USB A to USB B cord
