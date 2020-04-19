@@ -14,9 +14,11 @@ def update_led():
     red_led = board.digital[13]
 
     if savannah_in_meeting:
+        print('switch to busy')
         on_led = red_led
         off_led = green_led
     else:
+        print('switch to free')
         on_led = green_led
         off_led = red_led
     on_led.write(1)

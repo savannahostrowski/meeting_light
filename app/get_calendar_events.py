@@ -6,6 +6,8 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from calendar_id import CAL_ID
+from pytz import timezone
+
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
@@ -38,6 +40,7 @@ def get_events():
     service = build('calendar', 'v3', credentials=creds)
 
     # Call the Calendar API
+
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     work_calendar = CAL_ID
     events_result = service.events().list(calendarId=work_calendar, timeMin=now,
@@ -59,18 +62,18 @@ def is_savannah_in_meeting():
     events = get_events()
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     next_or_current_event = events[0]
+    print(next_or_current_event)
 
     # Five minutes that we will buffer each event on the calendar with
     five_minutes = datetime.timedelta(minutes=5)
 
     # Convert datetime strings to datetime objects
-    start_minus_five = datetime.datetime.fromisoformat(next_or_current_event[0][:-1]) - five_minutes
-    end_plus_five = datetime.datetime.fromisoformat(next_or_current_event[1][:-1]) + five_minutes
+    start = datetime.datetime.fromisoformat(next_or_current_event[0]).astimezone(timezone('US/Pacific'))
+    end = datetime.datetime.fromisoformat(next_or_current_event[1]).astimezone(timezone('US/Pacific'))
 
     # Buffer the event
-    start = start_minus_five.strftime("%Y-%m-%d %H:%M:%S")
-    end = end_plus_five.strftime("%Y-%m-%d %H:%M:%S")
-
+    start = start.strftime("%Y-%m-%d %H:%M:%S")
+    end = end.strftime("%Y-%m-%d %H:%M:%S")
     return start < now < end
 
 if __name__ == '__main__':
